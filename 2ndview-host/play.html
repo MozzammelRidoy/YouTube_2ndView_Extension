@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>2ndView</title>
+    <style>
+      html, body { margin:0;padding:0;width:100%;height:100%;background:#000;overflow:hidden; }
+      #player { width:100%;height:100%; }
+      #player iframe { width:100%;height:100%;border:0; }
+      #error {
+        position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+        color:#555;font-family:system-ui;font-size:14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="player"></div>
+    <script>
+      var params = new URLSearchParams(window.location.search);
+      var videoId = params.get("v");
+      var startTime = parseInt(params.get("t") || "0", 10);
+
+      if (!videoId) {
+        document.body.innerHTML = '<div id="error">No video ID provided.</div>';
+      }
+
+      var player = null;
+      var cmdQueue = []; // buffer commands that arrive before player is ready
+
+      function execCmd(action) {
+        if (!player) { cmdQueue.push(action); return; }
+        switch (action) {
+          case "toggle":
+            player.getPlayerState() === YT.PlayerState.PLAYING
+              ? player.pauseVideo() : player.playVideo();
+            break;
+          case "seekForward":
+            player.seekTo(player.getCurrentTime() + 5, true); break;
+          case "seekBackward":
+            player.seekTo(Math.max(0, player.getCurrentTime() - 5), true); break;
+          case "volumeUp":
+            if (player.isMuted()) { player.unMute(); player.setVolume(10); }
+            else player.setVolume(Math.min(100, player.getVolume() + 10));
+            break;
+          case "volumeDown":
+            var v = player.isMuted() ? 0 : player.getVolume();
+            var nv = Math.max(0, v - 10);
+            if (nv === 0) player.mute(); else { player.unMute(); player.setVolume(nv); }
+            break;
+          case "mute":
+            player.isMuted() ? player.unMute() : player.mute(); break;
+        }
+      }
+
+      window.addEventListener("message", function (e) {
+        if (!e.data || e.data.type !== "2ndview-ctrl") return;
+        execCmd(e.data.action);
+      });
+
+      window.onYouTubeIframeAPIReady = function () {
+        if (!videoId) return;
+        player = new YT.Player("player", {
+          width: "100%",
+          height: "100%",
+          videoId: videoId,
+          playerVars: {
+            autoplay: 1,
+            start: startTime,
+            playsinline: 1,
+            rel: 0,
+            modestbranding: 1,
+          },
+          events: {
+            onReady: function (e) {
+              e.target.playVideo();
+              // Flush any commands that arrived before the player was ready
+              cmdQueue.forEach(execCmd);
+              cmdQueue = [];
+            },
+          },
+        });
+      };
+
+      var tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
+    </script>
+  </body>
+</html>

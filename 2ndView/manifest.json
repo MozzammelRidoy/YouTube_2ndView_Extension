@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "2ndView",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "version": "1.0.0",
+  "description": "Watch YouTube videos in a clean second-view overlay modal — distraction-free, with keyboard controls, size slider, and auto-open.",
+  "permissions": ["activeTab", "contextMenus", "storage"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "2ndView",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "commands": {
+    "open-embed": {
+      "suggested_key": {
+        "default": "Alt+2"
+      },
+      "description": "Open 2ndView"
+    }
+  }
+}

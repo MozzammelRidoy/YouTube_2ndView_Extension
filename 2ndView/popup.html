@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: system-ui, sans-serif;
+        width: 230px;
+        padding: 14px;
+        background: #0f0f0f;
+        color: #fff;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .header-icon {
+        width: 24px; height: 24px;
+        border-radius: 5px;
+        flex-shrink: 0;
+      }
+      .header h2 {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+
+      /* Primary action button */
+      #actionBtn {
+        width: 100%;
+        padding: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        background: #ff0000;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        transition: background 0.15s, transform 0.15s;
+        margin-bottom: 8px;
+      }
+      #actionBtn:hover { background: #cc0000; transform: translateY(-1px); }
+      #actionBtn:active { transform: translateY(0); }
+
+      /* Close modal button */
+      #closeModalBtn {
+        width: 100%;
+        padding: 7px;
+        font-size: 12px;
+        font-weight: 600;
+        color: rgba(255,100,100,0.8);
+        background: rgba(255,0,0,0.07);
+        border: 1px solid rgba(255,60,60,0.2);
+        border-radius: 7px;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: background 0.15s, border-color 0.15s, color 0.15s;
+        margin-bottom: 8px;
+      }
+      #closeModalBtn:hover {
+        background: rgba(255,0,0,0.14);
+        border-color: rgba(255,60,60,0.45);
+        color: #ff6666;
+      }
+
+      .divider {
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.07);
+        margin: 10px 0;
+      }
+      .section-label {
+        font-size: 10px;
+        font-weight: 600;
+        color: rgba(255,255,255,0.25);
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        margin-bottom: 9px;
+      }
+      .setting-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px 0;
+      }
+      .setting-info { display: flex; flex-direction: column; gap: 1px; }
+      .setting-label {
+        font-size: 12px;
+        color: rgba(255,255,255,0.7);
+      }
+      .setting-desc {
+        font-size: 10px;
+        color: rgba(255,255,255,0.28);
+        line-height: 1.3;
+      }
+
+      /* Toggle switch */
+      .toggle { position: relative; width: 34px; height: 19px; flex-shrink: 0; }
+      .toggle input { opacity: 0; width: 0; height: 0; }
+      .toggle-slider {
+        position: absolute; inset: 0;
+        background: rgba(255,255,255,0.12);
+        border-radius: 19px; cursor: pointer;
+        transition: background 0.2s;
+      }
+      .toggle-slider::before {
+        content: ""; position: absolute;
+        width: 15px; height: 15px;
+        left: 2px; top: 2px;
+        background: #fff; border-radius: 50%;
+        transition: transform 0.2s;
+      }
+      .toggle input:checked + .toggle-slider { background: #ff0000; }
+      .toggle input:checked + .toggle-slider::before { transform: translateX(15px); }
+
+      .hint {
+        font-size: 10px;
+        color: rgba(255,255,255,0.16);
+        text-align: center;
+        margin-top: 10px;
+        line-height: 1.9;
+      }
+      #notice {
+        font-size: 12px;
+        color: rgba(255,255,255,0.3);
+        margin-bottom: 12px;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="icon32.png" class="header-icon" alt="" />
+      <h2>2ndView</h2>
+    </div>
+
+    <div id="notice" style="display:none"></div>
+    <button id="actionBtn"></button>
+    <button id="closeModalBtn"><span>✕</span> Close 2ndView</button>
+
+    <hr class="divider" />
+
+    <div class="section-label">Settings</div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <span class="setting-label">Enable 2ndView</span>
+        <span class="setting-desc">Turn the player on or off</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="modalEnabled" checked />
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <span class="setting-label">Open every video</span>
+        <span class="setting-desc">Automatically opens when a video plays</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="autoOpen" checked />
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-info">
+        <span class="setting-label">Keep open on refresh</span>
+        <span class="setting-desc">Reopen 2ndView after refreshing the page</span>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="reloadRestore" />
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="hint">
+      Alt+2 &nbsp;·&nbsp; Esc<br />
+      Space/K &nbsp;·&nbsp; ←→ seek &nbsp;·&nbsp; ↑↓ vol &nbsp;·&nbsp; M mute
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
