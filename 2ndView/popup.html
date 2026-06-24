@@ -129,6 +129,53 @@
         margin-top: 10px;
         line-height: 1.9;
       }
+      .star-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        width: 100%;
+        background: linear-gradient(135deg, rgba(255,0,0,0.16), rgba(255,80,80,0.08));
+        border: 1px solid rgba(255,60,60,0.25);
+        border-radius: 8px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 8px 0;
+        margin-top: 10px;
+        transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+      }
+      .star-cta:hover {
+        border-color: #ff0000;
+        box-shadow: 0 0 12px rgba(255,0,0,0.35);
+        transform: translateY(-1px);
+      }
+      .star-cta svg { width: 13px; height: 13px; fill: #fbbf24; flex-shrink: 0; }
+
+      .footer {
+        text-align: center;
+        margin-top: 9px;
+        font-size: 10px;
+        color: rgba(255,255,255,0.25);
+      }
+      .footer .heart {
+        color: #ff0000;
+        display: inline-block;
+        animation: heartbeat 1.5s ease-in-out infinite;
+      }
+      .footer a {
+        color: rgba(255,255,255,0.5);
+        text-decoration: none;
+        font-weight: 700;
+        transition: color 0.15s;
+      }
+      .footer a:hover { color: #ff6666; text-decoration: underline; }
+
+      @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.25); }
+      }
       #notice {
         font-size: 12px;
         color: rgba(255,255,255,0.3);
@@ -187,6 +234,18 @@
     <div class="hint">
       Alt+2 &nbsp;·&nbsp; Esc<br />
       Space/K &nbsp;·&nbsp; ←→ seek &nbsp;·&nbsp; ↑↓ vol &nbsp;·&nbsp; M mute
+    </div>
+
+    <hr class="divider" />
+
+    <a class="star-cta" href="https://github.com/MozzammelRidoy/YouTube_2ndView_Extension" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279L12 19.771l-7.416 3.642 1.48-8.279L0 9.306l8.332-1.151z"/></svg>
+      Star this repo on GitHub
+    </a>
+
+    <div class="footer">
+      Built with <span class="heart">♥</span> by
+      <a href="https://github.com/MozzammelRidoy" target="_blank" rel="noopener">Mozzammel Ridoy</a>
     </div>
 
     <script src="popup.js"></script>
