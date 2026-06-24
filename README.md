@@ -5,12 +5,13 @@
 <h1 align="center">2ndView</h1>
 
 <p align="center">
-  <b>An open-source Chrome extension that plays any YouTube video in a clean, distraction-free overlay — right on top of the YouTube page.</b>
+  <b>An open-source, ads-free YouTube video player — watch any YouTube video without ads, in a clean,
+  distraction-free overlay right on top of the YouTube page.</b>
 </p>
 
 <p align="center">
-  youtube ad-free overlay · watch youtube without ads extension · distraction-free youtube player ·
-  youtube popup player chrome extension · youtube embed overlay
+  youtube ads-free video player · ads bypass youtube player · watch youtube without ads · youtube ad-free overlay ·
+  distraction-free youtube player · youtube popup player chrome extension
 </p>
 
 <p align="center">
@@ -60,9 +61,10 @@
 
 ## What is this?
 
-**2ndView** is a free, open-source Chrome extension. When you open a YouTube video, it pauses YouTube's own
-player and pops up a separate, self-contained video player in a full-screen overlay on top of the page — no
-sidebar, no recommendations, no comments, no autoplay queue. Press `Esc` and you're back exactly where you were.
+**2ndView** is a free, open-source **ads-free YouTube video player** — an ads-bypass overlay player for
+watching YouTube videos without ads. When you open a YouTube video, it pauses YouTube's own player and pops up a
+separate, self-contained video player in a full-screen overlay on top of the page — no ads, no sidebar, no
+recommendations, no comments, no autoplay queue. Press `Esc` and you're back exactly where you were.
 
 This repo contains two parts that work together:
 

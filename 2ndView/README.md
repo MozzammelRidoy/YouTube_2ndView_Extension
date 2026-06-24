@@ -5,7 +5,7 @@
 <h1 align="center">2ndView</h1>
 
 <p align="center">
-  <b>Watch any YouTube video in a clean, distraction-free overlay — no sidebar, no recommendations, no comments.</b>
+  <b>An ads-free YouTube video player — watch any YouTube video without ads, in a clean, distraction-free overlay.</b>
 </p>
 
 <p align="center">
@@ -27,9 +27,10 @@
 
 ## What This Folder Is
 
-`2ndView/` is a complete, self-contained Chrome extension (Manifest V3). When you open a YouTube video, it pauses
-YouTube's native player and pops up a separate, full-screen overlay player on top of the page — distraction-free,
-with keyboard controls and a resizable window. Press `Esc` and you're back exactly where you were.
+`2ndView/` is a complete, self-contained Chrome extension (Manifest V3) — an **ads-free / ads-bypass YouTube
+video player**. When you open a YouTube video, it pauses YouTube's native player and pops up a separate,
+full-screen overlay player on top of the page — no ads, distraction-free, with keyboard controls and a resizable
+window. Press `Esc` and you're back exactly where you were.
 
 ---
 

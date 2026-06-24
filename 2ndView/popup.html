@@ -22,10 +22,21 @@
         border-radius: 5px;
         flex-shrink: 0;
       }
+      .header-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
       .header h2 {
         font-size: 14px;
         font-weight: 700;
         letter-spacing: 0.3px;
+      }
+      .header-text p {
+        font-size: 9px;
+        font-weight: 600;
+        color: rgba(255,80,80,0.7);
+        letter-spacing: 0.2px;
       }
 
       /* Primary action button */
@@ -187,7 +198,10 @@
   <body>
     <div class="header">
       <img src="icon32.png" class="header-icon" alt="" />
-      <h2>2ndView</h2>
+      <div class="header-text">
+        <h2>2ndView</h2>
+        <p>Watch YouTube without ads</p>
+      </div>
     </div>
 
     <div id="notice" style="display:none"></div>
